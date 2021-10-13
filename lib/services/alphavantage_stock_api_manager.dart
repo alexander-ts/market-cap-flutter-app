@@ -8,7 +8,7 @@ import 'package:market_cap_chart/services/stock_api_manager.dart';
 class AlphavantageStockAPIManager extends StockApiManager
 {
   final path = 'https://www.alphavantage.co/';
-  final apiKey = 'demo';
+  final apiKey = '';
   
   @override
   Future<Overview> getCompanyOverview(String companyName) async {
@@ -16,14 +16,18 @@ class AlphavantageStockAPIManager extends StockApiManager
       final url = Uri.parse('$path/query?function=$functionName&symbol=$companyName&apikey=$apiKey');
       
       final response = await http.get(url);
-
       if (response.statusCode == 200)
       {
+        final jsonBody = json.decode(response.body) as Map<String, dynamic>;
+        if (jsonBody.containsKey('Note'))
+        {
+          throw Exception(jsonBody['Note']);
+        }
         return Overview.fromJson(json.decode(response.body) as Map<String, dynamic>);
       }
       else
       {
-        throw Exception('Unknown status code returned.');
+        throw Exception('Unexpected status code returned.');
       }
   }
 }

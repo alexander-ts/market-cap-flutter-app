@@ -70,6 +70,7 @@ void main() {
 }
   ''';
 
+  /// Тест отправки запроса к API Alphavantage, не учитывает таймауты.
   test('Alphavantage API call test: IBM market cap returned as expected.', () async {
     final apiManager = AlphavantageStockAPIManager();
     final overview = await apiManager.getCompanyOverview('IBM');
