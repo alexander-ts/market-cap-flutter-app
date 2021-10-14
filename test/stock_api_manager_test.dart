@@ -5,7 +5,6 @@ import 'package:market_cap_chart/services/alphavantage_stock_api_manager.dart';
 import 'package:test/test.dart';
 
 void main() {
-  
   const expectedResponseBody = '''
   {
     "Symbol": "IBM",
@@ -71,11 +70,16 @@ void main() {
   ''';
 
   /// Тест отправки запроса к API Alphavantage, не учитывает таймауты.
-  test('Alphavantage API call test: IBM market cap returned as expected.', () async {
-    final apiManager = AlphavantageStockAPIManager();
-    final overview = await apiManager.getCompanyOverview('IBM');
-    final expected = Overview.fromJson(json.decode(expectedResponseBody) as Map<String, dynamic>);
+  test(
+    'Alphavantage API call test: IBM market cap returned as expected.',
+    () async {
+      final apiManager = AlphavantageStockAPIManager();
+      final overview = await apiManager.getCompanyOverview('IBM');
+      final expected = Overview.fromJson(
+          json.decode(expectedResponseBody) as Map<String, dynamic>);
 
-    expect(overview.marketCapitalization == expected.marketCapitalization, true);
-  });
+      expect(
+          overview.marketCapitalization == expected.marketCapitalization, true);
+    },
+  );
 }

@@ -8,7 +8,7 @@ class DescriptionPage extends StatelessWidget {
   static String routeName = '/description';
   @override
   Widget build(BuildContext context) {
-    final overview = ModalRoute.of(context)!.settings.arguments as Overview;
+    final overview = ModalRoute.of(context)!.settings.arguments! as Overview;
 
     return Scaffold(
       appBar: AppBar(

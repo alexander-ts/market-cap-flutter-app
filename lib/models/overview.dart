@@ -59,6 +59,7 @@ class Overview {
   String lastSplitFactor = '';
   String lastSplitDate = '';
 
+  // ignore: sort_constructors_first
   Overview.fromJson(Map<String, dynamic> json) {
     symbol = json['Symbol'] as String;
     assetType = json['AssetType'] as String;
