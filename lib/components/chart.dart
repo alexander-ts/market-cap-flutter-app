@@ -55,8 +55,7 @@ class OverviewChart extends StatelessWidget {
           dataSource: _createChartDataList(),
           xValueMapper: (OverviewChartData data, _) => data.x,
           yValueMapper: (OverviewChartData data, _) => data.y,
-          dataLabelMapper: (OverviewChartData data, _) =>
-              Money.fromInt(
+          dataLabelMapper: (OverviewChartData data, _) => Money.fromInt(
             data.y,
             Currency.create('USD', 0),
           ).toString(),
