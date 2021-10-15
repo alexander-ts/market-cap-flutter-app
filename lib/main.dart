@@ -7,7 +7,11 @@ import 'package:market_cap_chart/views/home_page.dart';
 void main() {
   final stockApiManager = AlphavantageStockAPIManager();
   final marketCapService = MarketCapService(stockApiManager);
-  runApp(MyApp(marketCapService: marketCapService,),);
+  runApp(
+    MyApp(
+      marketCapService: marketCapService,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,10 +28,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        HomePage.routeName : 
-          (BuildContext context) => HomePage(marketCapService: marketCapService),
-        DescriptionPage.routeName : 
-          (BuildContext context) => const DescriptionPage()
+        HomePage.routeName: (BuildContext context) =>
+            HomePage(marketCapService: marketCapService),
+        DescriptionPage.routeName: (BuildContext context) =>
+            const DescriptionPage()
       },
     );
   }

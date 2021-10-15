@@ -1,10 +1,9 @@
 import 'package:market_cap_chart/models/overview.dart';
 import 'package:market_cap_chart/services/stock_api_manager.dart';
 
-class MarketCapService
-{  
+class MarketCapService {
   MarketCapService(this.stockApiManager);
-  
+
   final StockApiManager stockApiManager;
   final List<String> symbols = ['AAPL', 'AMZN', 'GOOG', 'MSFT', 'FB', 'NFLX'];
 
@@ -15,9 +14,7 @@ class MarketCapService
     while (true) {
       try {
         return await function(symbol);
-      }
-      catch (e)
-      {
+      } catch (e) {
         // ignore: avoid_print
         print('Cannot get an Overview for $symbol. Reason: $e');
         // ignore: avoid_print
@@ -25,14 +22,13 @@ class MarketCapService
         await Future.delayed(const Duration(seconds: 15), () {});
       }
     }
-  } 
-  
+  }
+
   /// Метод обновляет данные о компаниях.
   Stream<Overview> getOverviewStream() async* {
-    for (final symbol in symbols)
-    {
-        final overview = await _getOverviewBySymbol(symbol);
-        yield overview;
+    for (final symbol in symbols) {
+      final overview = await _getOverviewBySymbol(symbol);
+      yield overview;
     }
   }
 }

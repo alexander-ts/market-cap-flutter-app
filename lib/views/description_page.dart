@@ -9,20 +9,27 @@ class DescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final overview = ModalRoute.of(context)!.settings.arguments! as Overview;
-
+    //Формирую список.
+    final tiles = [
+      ListTile(
+        title: Text(
+          overview.name,
+          style: Theme.of(context).textTheme.headline3,
+        ),
+      )
+    ];
+    overview.getProperties().forEach((key, value) {
+      tiles.add(ListTile(
+        title: Text(key),
+        subtitle: Text(value),
+      ));
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text('Описание компании'),
       ),
       body: ListView(
-        children: [
-          ListTile(
-            title: Text(overview.name),
-          ),
-          ListTile(
-            title: Text(overview.marketCapitalization),
-          )
-        ],
+        children: tiles,
       ),
     );
   }
